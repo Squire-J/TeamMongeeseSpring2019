@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{todonotes}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{wasysym}
+
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\graphicspath{ {./images/} }
+\title{Requirements Specification Document}
+\begin{document}
+\maketitle
+\newpage
+
+\section
+  Content
+
+\end{document}
