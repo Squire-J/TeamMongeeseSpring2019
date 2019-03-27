@@ -17,7 +17,7 @@ folder = "/spectral/gaobing/inputfile/"
 fname = folder + "2018unzipfilelist.txt" 
 
 # algorithm created by user
-def user_algorithm(filename);
+def user_algorithm(filename):
     run_atm_corr(Level1(filename), Level2(outdir="/spectral/gaobing/OLCI/done_2019", fmt='netcdf4', datasets=default_datasets+['SPM']), multiprocessing=-1 )
 
 
