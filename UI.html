@@ -1,1 +1,143 @@
-<code?>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>SEng 371 Project 2</title>
+    <meta name="description" content="SEng 371 Project 2">
+    <meta name="author" content="Team Mongeese">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+    <script>
+
+        var bar = document.getElementById('js-progressbar');
+
+        UIkit.upload('.js-upload', {
+
+            url: '',
+            multiple: true,
+
+            beforeSend: function () {
+                console.log('beforeSend', arguments);
+            },
+            beforeAll: function () {
+                console.log('beforeAll', arguments);
+            },
+            load: function () {
+                console.log('load', arguments);
+            },
+            error: function () {
+                console.log('error', arguments);
+            },
+            complete: function () {
+                console.log('complete', arguments);
+            },
+
+            loadStart: function (e) {
+                console.log('loadStart', arguments);
+
+                bar.removeAttribute('hidden');
+                bar.max = e.total;
+                bar.value = e.loaded;
+            },
+
+            progress: function (e) {
+                console.log('progress', arguments);
+
+                bar.max = e.total;
+                bar.value = e.loaded;
+            },
+
+            loadEnd: function (e) {
+                console.log('loadEnd', arguments);
+
+                bar.max = e.total;
+                bar.value = e.loaded;
+            },
+
+            completeAll: function () {
+                console.log('completeAll', arguments);
+
+                setTimeout(function () {
+                    bar.setAttribute('hidden', 'hidden');
+                }, 1000);
+
+                alert('Upload Completed');
+            }
+
+        });
+    </script>
+
+</head>
+
+<body class="uk-height-1-1">
+    <!-- SO the idea here is going to be that the entire page will be 
+    in a container and the title will be in a card centered at the top
+    Next there will be a card for the body of the app, this will have
+    tabs to select which option you would like to use. Options will 
+    include uploading an algorithm, seeing the fire map and a more option
+    The uploader frame will display a select button to select your algorithm
+    as a file, alternatively there will be a dropspace for files as well.
+    The map will have a short description at the top of the image to describe 
+    things such as the area the image is displaying and the timeframe.
+    The image will be a still of the area with an overlay that will change
+    depending on the the slider that will be at the bottom mof the image.
+    The final tab will display an ellipses with words saying more to come.-->
+
+    <!-- UIKIT tools:
+        card            -- for background
+        possibly alert  -- for upload of algorithm
+        columns         -- for upload card to hold the options in columns
+        progress bar    -- for uploading of file
+        tooltip         -- to describe the contents of each tab for the panes
+        upload          -- to use to upload the algorithm
+    -->
+    <div class="uk-container uk-background-cover uk-height-1-1" uk-parallax="bgy: -200"
+        style="background-image: url('./background_fire.jpg');">
+        <div class="uk-card uk-card-default uk-card-body uk-width-auto uk-margin-bottom">
+            <h1 class="uk-align-centre">SEng 371 Demo Page</h1>
+        </div>
+        <div class="uk-card uk-card-body uk-card-default uk-width-auto">
+            <ul class="uk-subnav uk-subnav-pill" uk-switcher>
+                <li><a href="#">Algorithm Upload</a></li>
+                <li><a href="#">Forest Fire Map</a></li>
+                <li><a href="#">Future content</a></li>
+            </ul>
+
+            <ul class="uk-switcher uk-margin">
+                <li>
+                    <div class="js-upload uk-placeholder uk-text-center">
+                        <span uk-icon="icon: cloud-upload"></span>
+                        <span class="uk-text-middle">Attach binaries by dropping them here or</span>
+                        <div uk-form-custom>
+                            <input type="file" multiple>
+                            <span class="uk-link">selecting one</span>
+                        </div>
+                    </div>
+
+                    <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+                </li>
+                <li>
+                    <p>This is what it could look like if the algorithm was related to a forest fire progression map.
+                    </p><br>
+                    <div class="uk-inline">
+                        <img src="./forestfire.jpg" />
+                        <div class="uk-overlay uk-light uk-position-bottom">
+                            <p>Default Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>
+                        Additional Content could be shown here in the future.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
