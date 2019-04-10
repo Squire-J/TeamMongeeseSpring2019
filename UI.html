@@ -18,7 +18,7 @@
         UIkit.upload('.js-upload', {
 
             url: '',
-            multiple: true,
+            multiple: false,
 
             beforeSend: function () {
                 console.log('beforeSend', arguments);
@@ -64,7 +64,6 @@
                 setTimeout(function () {
                     bar.setAttribute('hidden', 'hidden');
                 }, 1000);
-
                 alert('Upload Completed');
             }
 
@@ -85,18 +84,95 @@
                     <li><a href="#">Eagle Eye</a></li>
                     <li><a href="#">Future content</a></li>
                 </ul>
-
                 <ul class="uk-switcher uk-margin">
                     <li>
-                        <div class="js-upload uk-placeholder uk-text-center">
-                            <span uk-icon="icon: cloud-upload"></span>
-                            <span class="uk-text-middle">Upload algorithm by dropping here or</span>
-                            <div uk-form-custom>
-                                <input type="file" multiple>
-                                <span class="uk-link">selecting here</span>
+                        <div>
+                            <div class="js-upload uk-placeholder uk-text-center">
+                                <span uk-icon="icon: cloud-upload"></span>
+                                <span class="uk-text-middle">Upload algorithm by dropping here or</span>
+                                <div uk-form-custom>
+                                    <input type="file" multiple>
+                                    <span class="uk-link">selecting here</span>
+                                </div>
                             </div>
+                            <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+                            <p>Please select the appropriate Camera, Path, Row and Item to apply your algorithm.</p>
+                            <form class="uk-form-horizontal uk-margin-large">
+                                <div class="uk-margin">
+                                    <div class="uk-form-label">Camera: </div>
+                                    <div class="uk-form-controls uk-form-controls-text">
+                                        <label><input class="uk-radio" type="radio" name="radio1"> MUX</label><br>
+                                        <label><input class="uk-radio" type="radio" name="radio1"> AWFI</label><br>
+                                        <label><input class="uk-radio" type="radio" name="radio1"> PAN10M</label><br>
+                                        <label><input class="uk-radio" type="radio" name="radio1"> PAN5M</label>
+                                    </div>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-horizontal-select">Path:</label>
+                                    <div class="uk-form-controls">
+                                        <select class="uk-select" id="form-horizontal-select">
+                                            <option>057</option>
+                                            <option>058</option>
+                                            <option>059</option>
+                                            <option>060</option>
+                                            <option>062</option>
+                                            <option>063</option>
+                                            <option>064</option>
+                                            <option>065</option>
+                                            <option>066</option>
+                                            <option>067</option>
+                                            <option>068</option>
+                                            <option>...</option>
+                                            <option>240</option>
+                                            <option>241</option>
+                                            <option>243</option>
+                                            <option>248</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-horizontal-select">Row:</label>
+                                    <div class="uk-form-controls">
+                                        <select class="uk-select" id="form-horizontal-select">
+                                            <option>094</option>
+                                            <option>095</option>
+                                            <option>096</option>
+                                            <option>097</option>
+                                            <option>098</option>
+                                            <option>099</option>
+                                            <option>100</option>
+                                            <option>101</option>
+                                            <option>102</option>
+                                            <option>103</option>
+                                            <option>104</option>
+                                            <option>105</option>
+                                            <option>106</option>
+                                            <option>107</option>
+                                            <option>...</option>
+                                            <option>121</option>
+                                            <option>122</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-horizontal-select">Item:</label>
+                                    <div class="uk-form-controls">
+                                        <select class="uk-select" id="form-horizontal-select">
+                                            <option>CBERS_4_MUX_20170618_057_101_L2.json </option>
+                                            <option>CBERS_4_MUX_20170930_057_101_L2.json </option>
+                                            <option>CBERS_4_MUX_20171026_057_101_L2.json </option>
+                                            <option>CBERS_4_MUX_20171121_057_101_L2.json </option>
+                                            <option>CBERS_4_MUX_20180617_057_101_L2.json </option>
+                                            <option>CBERS_4_MUX_201880713_057_101_L2.json </option>
+                                            <option>CBERS_4_MUX_20180808_057_101_L2.json </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
                     </li>
                     <li>
                         <div class="uk-align-centre uk-text-center">
@@ -107,7 +183,8 @@
                             <div class="uk-inline">
                                 <img src="./forestfire.jpg" />
                                 <div class="uk-overlay uk-light uk-position-bottom">
-                                    <p>Default Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <p>This is the overlay that would display the animated progression of the wildfire.
+                                    </p>
                                 </div>
                             </div>
                         </div>
