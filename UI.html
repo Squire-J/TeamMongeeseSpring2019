@@ -73,72 +73,57 @@
 
 </head>
 
-<body class="uk-height-1-1">
-    <!-- SO the idea here is going to be that the entire page will be 
-    in a container and the title will be in a card centered at the top
-    Next there will be a card for the body of the app, this will have
-    tabs to select which option you would like to use. Options will 
-    include uploading an algorithm, seeing the fire map and a more option
-    The uploader frame will display a select button to select your algorithm
-    as a file, alternatively there will be a dropspace for files as well.
-    The map will have a short description at the top of the image to describe 
-    things such as the area the image is displaying and the timeframe.
-    The image will be a still of the area with an overlay that will change
-    depending on the the slider that will be at the bottom mof the image.
-    The final tab will display an ellipses with words saying more to come.-->
+<body>
+    <div class="uk-background-cover" uk-parallax="bgy: -200" style="background-image: url('./background_fire.jpg');">
+        <div class="uk-container">
+            <div class="uk-card uk-card-default uk-card-body uk-width-auto uk-margin-bottom">
+                <h1 class="uk-align-centre uk-text-center">SEng 371 Demo Page</h1>
+            </div>
+            <div class="uk-card uk-card-body uk-card-default uk-width-auto">
+                <ul class="uk-subnav uk-subnav-pill" uk-switcher>
+                    <li><a href="#">Algorithm Upload</a></li>
+                    <li><a href="#">Eagle Eye</a></li>
+                    <li><a href="#">Future content</a></li>
+                </ul>
 
-    <!-- UIKIT tools:
-        card            -- for background
-        possibly alert  -- for upload of algorithm
-        columns         -- for upload card to hold the options in columns
-        progress bar    -- for uploading of file
-        tooltip         -- to describe the contents of each tab for the panes
-        upload          -- to use to upload the algorithm
-    -->
-    <div class="uk-container uk-background-cover uk-height-1-1" uk-parallax="bgy: -200"
-        style="background-image: url('./background_fire.jpg');">
-        <div class="uk-card uk-card-default uk-card-body uk-width-auto uk-margin-bottom">
-            <h1 class="uk-align-centre uk-text-center">SEng 371 Demo Page</h1>
-        </div>
-        <div class="uk-card uk-card-body uk-card-default uk-width-auto">
-            <ul class="uk-subnav uk-subnav-pill" uk-switcher>
-                <li><a href="#">Algorithm Upload</a></li>
-                <li><a href="#">Eagle Eye</a></li>
-                <li><a href="#">Future content</a></li>
-            </ul>
-
-            <ul class="uk-switcher uk-margin">
-                <li>
-                    <div class="js-upload uk-placeholder uk-text-center">
-                        <span uk-icon="icon: cloud-upload"></span>
-                        <span class="uk-text-middle">Upload algorithm by dropping here or</span>
-                        <div uk-form-custom>
-                            <input type="file" multiple>
-                            <span class="uk-link">selecting here</span>
-                        </div>
-                    </div>
-                    <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
-                </li>
-                <li>
-                    <div class="uk-align-centre uk-text-center">
-                        <h1>EagleEye</h1>
-                        <br>
-                        <p>This is the proof of concept example application.</p>
-                        <br>
-                        <div class="uk-inline">
-                            <img src="./forestfire.jpg" />
-                            <div class="uk-overlay uk-light uk-position-bottom">
-                                <p>Default Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <ul class="uk-switcher uk-margin">
+                    <li>
+                        <div class="js-upload uk-placeholder uk-text-center">
+                            <span uk-icon="icon: cloud-upload"></span>
+                            <span class="uk-text-middle">Upload algorithm by dropping here or</span>
+                            <div uk-form-custom>
+                                <input type="file" multiple>
+                                <span class="uk-link">selecting here</span>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <p>
-                        Additional Content could be shown here in the future.
-                    </p>
-                </li>
-            </ul>
+                        <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+                    </li>
+                    <li>
+                        <div class="uk-align-centre uk-text-center">
+                            <h1>EagleEye</h1>
+                            <br>
+                            <p>This is the proof of concept example application.</p>
+                            <br>
+                            <div class="uk-inline">
+                                <img src="./forestfire.jpg" />
+                                <div class="uk-overlay uk-light uk-position-bottom">
+                                    <p>Default Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="uk-align-centre uk-text-center">
+                            <br>
+                            <p>
+                                More to come...
+                            </p>
+                            <br>
+                            <span uk-icon="icon: more; ratio: 4"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
