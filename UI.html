@@ -96,8 +96,10 @@
                                 </div>
                             </div>
                             <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
-                            <p>Please select the appropriate Camera, Path, Row and Item to apply your algorithm.</p>
-                            <form class="uk-form-horizontal uk-margin-large">
+
+                            <h4 class="uk-margin-medium-top">Please select the appropriate Camera, Path, Row and Item to apply your algorithm.</h4>
+                            
+                            <form class="uk-form-horizontal uk-margin">
                                 <div class="uk-margin">
                                     <div class="uk-form-label">Camera: </div>
                                     <div class="uk-form-controls uk-form-controls-text">
@@ -179,6 +181,27 @@
                                         </select>
                                     </div>
                                 </div>
+                            </form>
+
+                            <h4>Please select any required software packages to run the provided algorithm.</h4>
+                            <form class="uk-form-horizontal uk-margin">
+                                <div class="uk-margin">
+                                    <div class="uk-form-label">Software Packages:</div>
+                                    <div class="uk-form-controls uk-form-controls-text">
+                                        <label><input class="uk-checkbox" type="checkbox" name="checkbox1">
+                                            Polymer</label><br>
+                                        <label><input class="uk-checkbox" type="checkbox" name="checkbox1">
+                                            MatLab</label><br>
+                                        <label><input class="uk-checkbox" type="checkbox" name="checkbox1">
+                                            Tableau</label><br>
+                                        <label><input class="uk-checkbox" type="checkbox" name="checkbox1">
+                                            Keen</label><br>
+                                        <label><input class="uk-checkbox" type="checkbox" name="checkbox1">
+                                            Looker</label>
+                                    </div>
+                                </div>
+
+                                <button class="uk-button uk-button-default uk-align-right">Submit</button>
                             </form>
                         </div>
                     </li>
