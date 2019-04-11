@@ -1,0 +1,55 @@
+
+
+Here is the guide to install Docker and build Polymer image in your local machine. 
+After you build your own image, you can run the script to process SEN3 satellite image.
+
+Step 1 Install Docker engine on your computer.
+
+Please refer Docker website for installation. 
+
+https://docs.docker.com/install/
+ 
+Step 2 setup.
+
+Please download Dockerfile from GitHub and save it to a folder. For example “SENG370”
+
+Except for Docker file, there are two more files.  One is polymer-v4.9.tar.gz and one is test1.py. Please save them to SENG370 folder as well.
+
+You can replace test1.py with your script if you want. Just remember to change Dockerfile. 
+
+Step 3 build Docker polymer images.
+
+Open a terminal and cd to SENG370 folder. Run below command.
+The command is : “ sudo  docker build -t polymer .” 
+
+Please note the -t tells docker engine the name of your container. You can change to any string. 
+Also, the dot is mandatory.
+
+Step4 initial a Docker container instance
+
+“sudo docker run -v “/home/gaobing/sing_workdir/docker_example/raw_file”:/raw_file -it --entrypoint /bin/bash  polymer ” 
+
+-v  bind you host directory to the container directory. 
+As I put SNE3 raw file under  “/home/gaobing/sing_workdir/docker_example/raw_file”. After bind this directory to the container, you can see these file when you log in to the container
+
+gaobing@gaobing-ycLab:~/sing_workdir/docker_example/raw_file$ ls -l
+total 12
+drwxr-xr-x 2 gaobing gaobing 4096 Feb 26 16:31 outdir1
+drwxrwxr-x 2 gaobing gaobing 4096 Feb 26 15:04 S3A_OL_1_EFR____20180902T183108_20180902T183408_20180904T001910_0179_035_184_1980_MAR_O_NT_002.SEN3
+drwxrwxr-x 2 gaobing gaobing 4096 Feb 26 15:04 S3A_OL_1_EFR____20180902T183408_20180902T183708_20180904T001954_0179_035_184_2160_MAR_O_NT_002.SEN3
+
+
+when you bind it to container,you can see it 
+
+root@67f07d5fb5fd:/raw_file# ls -l 
+total 12
+drwxrwxr-x 2 1000 1000 4096 Feb 26 23:04 S3A_OL_1_EFR____20180902T183108_20180902T183408_20180904T001910_0179_035_184_1980_MAR_O_NT_002.SEN3
+drwxrwxr-x 2 1000 1000 4096 Feb 26 23:04 S3A_OL_1_EFR____20180902T183408_20180902T183708_20180904T001954_0179_035_184_2160_MAR_O_NT_002.SEN3
+drwxr-xr-x 2 1000 1000 4096 Feb 27 00:56 outdir1
+
+Last step execute the script
+cd to directory pol4.9 and type command "python3 test1.py"
+
+If you want to open the raw images and polymer output files, you can use ESA SNAP tool. You can download from below link and install on your computer 
+
+http://step.esa.int/main/download/ 
