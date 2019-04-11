@@ -1,6 +1,7 @@
 import urllib.request
 import json, re
 
+catalog = "https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/"
 
 def getLinks(url):
         with urllib.request.urlopen(url) as response:
@@ -15,11 +16,11 @@ def getLinks(url):
                         li.append(link['href'].split('/')[0])
         return li
 
-def printList(li):
+def printList(li, numPerRow):
         i = 1
         for el in li:
                 print(el, end=" ")
-                if(i%20 == 0):
+                if(i%numPerRow == 0):
                         print("")
                 i+=1
         print("\n")
@@ -28,11 +29,11 @@ def printList(li):
         
 
 def chooseCamera():
-        listCameras = getLinks('https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/catalog.json')
+        listCameras = getLinks(catalog + 'catalog.json')
 
         print("* * * Choosing Camera * * *\n")
         print("Here is a list of available cameras:")
-        printList(listCameras)
+        printList(listCameras, 20)
 
         camera = input("Please enter a camera name from the list of available cameras: ")
         while(camera not in listCameras):
@@ -41,11 +42,11 @@ def chooseCamera():
         return camera
 
 def choosePath(camera):
-        listPaths = getLinks('https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/' + camera + '/catalog.json')
+        listPaths = getLinks(catalog + camera + '/catalog.json')
 
         print("* * * Choosing Path * * *\n")
         print("Here is a list of the available paths for the " + camera + " camera:")
-        printList(listPaths)
+        printList(listPaths, 20)
 
         path = input("Please enter a path number from the list of available paths for the " + camera + " camera: ")
         while(path not in listPaths):
@@ -54,11 +55,11 @@ def choosePath(camera):
         return path
 
 def chooseRow(camera, path):
-        listRows = getLinks('https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/' + camera + '/' + path + '/catalog.json')
+        listRows = getLinks(catalog + camera + '/' + path + '/catalog.json')
 
         print("* * * Choosing Row * * *\n")
         print("Here is a list of the available rows for the " + camera + " camera and path " + path +":")
-        printList(listRows)
+        printList(listRows, 20)
 
         row = input("Please enter a row number from the list of available rows for the " + camera + " camera and path " + path + ": ")
         while(row not in listRows):
@@ -66,32 +67,50 @@ def chooseRow(camera, path):
         print("\n")
         return row
 
-def chooseItem(camera, path, row):
-        listItems = getLinks('https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/' + camera + '/' + path + '/' + row + '/catalog.json')
+def chooseItems(camera, path, row):
+        listItems = getLinks(catalog + camera + '/' + path + '/' + row + '/catalog.json')
 
         print("* * * Choosing Item * * *\n")
         print("Here is a list of the available items for the " + camera + " camera and path " + path + "and row " + row + ":")
-        printList(listItems)
+        printList(listItems, 3)
 
         item = input("Please enter an item from the list of available items for the " + camera + " camera and path " + path + " and row " + row + ": ")
         while(item not in listItems):
                 item = input("You entered " + item + ", this is not on the list of available items for the " + camera + " camera and path " + path + " and row " + row + ", please enter an available item: ")
         print("\n")
-        return item
+        items = [camera + "/" + path + "/" + row + "/" + item]
+        listItems.remove(item)
+        if(len(listItems)==0):
+                return items
+
+        while(input("Would you like to select another item from the " + camera + " camera and path " + path + " and row " + row + "? (yes/no): ") == "yes"):
+                print("Here is a list of the remaining available items for the " + camera + " camera and path " + path + " and row " + row + ":")
+                printList(listItems, 3)
+                item = input("Please enter an item from the list of available items for the " + camera + " camera and path " + path + " and row " + row + ": ")
+                while(item not in listItems):
+                        item = input("You entered " + item + ", this is not on the list of available items for the " + camera + " camera and path " + path + " and row " + row + ", please enter an available item: ")
+                print("\n")
+                items.append(camera + "/" + path + "/" + row + "/" + item)
+                listItems.remove(item)
+                if(len(listItems)==0):
+                        return items
+
+        return items
 
 listItems = []
+
+
 camera = chooseCamera()
 path = choosePath(camera)
 row = chooseRow(camera, path)
-item = chooseItem(camera, path, row)
-if(item not in listItems):
-        listItems.append(item)
+items = chooseItems(camera, path, row)
 
-while(input("Would you like to select another item from the " + camera + " camera and path " + path + " and row " + row + "? (yes/no): ") == "yes"):
-        item = chooseItem(camera, path, row)
-        if(item not in listItems):
-                listItems.append(item)
-
+while(input("Would you like to select more items? (yes/no): ") == "yes"):
+        print("\n")
+        camera = chooseCamera()
+        path = choosePath(camera)
+        row = chooseRow(camera, path)
+        items.extend(chooseItems(camera, path, row))
 
 print("You have selected the items: ")
-print(listItems)
+print(items)

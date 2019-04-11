@@ -1,3 +1,6 @@
+# STAC Data Search Application 
+
+This application supports searching for STAC data 
 
 ## Resources
 * https://docs.python.org/3/howto/urllib2.html
